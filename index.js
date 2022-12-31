@@ -1,1 +1,124 @@
-let MAX=100;function validate(){let e=document.getElementById("expn").value;return!!/^[A-Za-z0-9^/*+()-]+$/.test(e)}function precedence(e){return"("==e||")"==e?0:"+"==e||"-"==e?1:"/"==e||"*"==e?2:"^"==e?3:-1}const isAlphaNumeric=e=>/^[a-z0-9]+$/gi.test(e);class Stack{constructor(){this.top=-1,this.stck=[]}push(e){this.top==MAX-1?console.log("Stack Overflow"):(this.top+=1,this.stck[this.top]=e)}pop(){if(-1==this.top)return"1";{let e=this.stck[this.top];return this.top-=1,e}}giveTop(){return -1==this.top?"#":this.stck[this.top]}isEmpty(){return -1==this.top}}const postfix=e=>{let t=new Stack,p="";for(let i=0;i<e.length;i++)if(isAlphaNumeric(e[i]))p+=e[i];else if("("==e[i])t.push(e[i]);else if(")"==e[i]){for(;"("!=t.giveTop();)p+=t.giveTop(),t.pop();t.pop()}else if(precedence(e[i])>precedence(t.giveTop()))t.push(e[i]);else if(precedence(e[i])==precedence(t.giveTop()))p+=t.giveTop(),t.pop(),t.push(e[i]);else if(precedence(e[i])<precedence(t.giveTop())){for(;precedence(t.giveTop())>=precedence(e[i]);)p+=t.giveTop(),t.pop();t.push(e[i])}for(;!t.isEmpty();)p+=t.giveTop(),t.pop();document.getElementById("ans").innerText=p};document.getElementById("convert").addEventListener("click",()=>{let e=document.getElementById("expn").value;validate()?postfix(e):document.getElementById("ans").innerText="Invalid Expression!!!"});
+let MAX = 100;
+
+function validate() {
+    let name = document.getElementById('expn').value;
+    let regex = /^[A-Za-z0-9^/*+()-]+$/;
+
+    if (regex.test(name)) {
+        return true;
+    }
+    return false;
+}
+
+function precedence(c) {
+    // () has lowest precedence
+    if (c == '(' || c == ')') {
+        return 0;
+    }
+    // for + -
+    else if (c == '+' || c == '-') {
+        return 1;
+    }
+    // for / *
+    else if (c == '/' || c == '*') {
+        return 2;
+    }
+    // ^ has highest precedence
+    else if (c == '^') {
+        return 3;
+    }
+    return -1;
+}
+
+const isAlphaNumeric = (str) => /^[a-z0-9]+$/gi.test(str);
+
+// class of Stack
+class Stack {
+    constructor() {
+        this.top = -1;
+        this.stck = [];
+    }
+
+    //pushes into TOS
+
+    push(data) {
+        if (this.top == MAX - 1) {
+            console.log('Stack Overflow');
+        } else {
+            this.top += 1;
+            this.stck[this.top] = data;
+        }
+    }
+
+    //pops the TOS
+    pop() {
+        if (this.top == -1) {
+            return '1';
+        } else {
+            const val = this.stck[this.top];
+            this.top -= 1;
+            return val;
+        }
+    }
+
+    // gives TOS
+    giveTop() {
+        if (this.top == -1) {
+            return '#';
+        }
+        return this.stck[this.top];
+    }
+
+    // tells wether stack is empty or not
+    isEmpty() {
+        return this.top == -1;
+    }
+}
+
+const postfix = (arg) => {
+    const s = new Stack();
+
+    let pfixarr = '';
+
+    for (let i = 0; i < arg.length; i++) {
+        if (isAlphaNumeric(arg[i])) {
+            pfixarr += arg[i];
+        } else if (arg[i] == '(') {
+            s.push(arg[i]);
+        } else if (arg[i] == ')') {
+            while (s.giveTop() != '(') {
+                pfixarr += s.giveTop();
+                s.pop();
+            }
+            s.pop();
+        } else if (precedence(arg[i]) > precedence(s.giveTop())) {
+            s.push(arg[i]);
+        } else if (precedence(arg[i]) == precedence(s.giveTop())) {
+            pfixarr += s.giveTop();
+            s.pop();
+            s.push(arg[i]);
+        } else if (precedence(arg[i]) < precedence(s.giveTop())) {
+            while (precedence(s.giveTop()) >= precedence(arg[i])) {
+                pfixarr += s.giveTop();
+                s.pop();
+            }
+            s.push(arg[i]);
+        }
+    }
+
+    while (!s.isEmpty()) {
+        pfixarr += s.giveTop();
+        s.pop();
+    }
+    document.getElementById('ans').innerText = pfixarr;
+};
+
+// let arg = document.getElementById('arg').value;
+document.getElementById('convert').addEventListener('click', () => {
+    const arg = document.getElementById('expn').value;
+    if (validate()) {
+        postfix(arg);
+    } else {
+        document.getElementById('ans').innerText = 'Invalid Expression!!!';
+    }
+});
