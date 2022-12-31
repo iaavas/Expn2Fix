@@ -1,5 +1,7 @@
 let MAX = 100;
 
+
+
 function validate() {
     let name = document.getElementById('expn').value;
     let regex = /^[A-Za-z0-9^/*+()-]+$/;
@@ -110,15 +112,41 @@ const postfix = (arg) => {
         pfixarr += s.giveTop();
         s.pop();
     }
-    document.getElementById('ans').innerText = pfixarr;
+    return pfixarr;
 };
 
 // let arg = document.getElementById('arg').value;
 document.getElementById('convert').addEventListener('click', () => {
     const arg = document.getElementById('expn').value;
     if (validate()) {
-        postfix(arg);
+        document.getElementById('postfix').innerText =  `${ postfix(arg)}`;
+        document.getElementById('prefix').innerText =  ` ${ prefix(arg)}`;
     } else {
         document.getElementById('ans').innerText = 'Invalid Expression!!!';
     }
 });
+
+
+const revStr = (str) => {
+    let newString = "";
+    for (let i = str.length - 1; i >= 0; i--) {
+        newString += str[i];
+    }
+    return newString;
+    
+}
+
+const prefix = (str) => {
+    str = str.replace(/\(|\)/g, function(match) {
+        if (match === "(") {
+          return ")";
+        } else {
+          return "(";
+        }
+      });
+    str = revStr(str);
+    str = postfix(str);
+    let preFixArr = revStr(str);
+    return preFixArr;
+      
+}

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Convert Expression to PostFix</title>
+    <title>Convert to PostFix & PreFix</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
@@ -13,26 +13,36 @@
 <body>
 
     <div class="title">
-        <h1><strong>Convert Expression to PostFix</strong></h1>
+        <h1><strong>Convert Expression to PostFix & PreFix</strong></h1>
     </div>
     <div class="main">
 
         <div class="column">
             <div class="input-sec">
-                <input type="text" id="expn" value="A+B/C*(D-A)^F^H" pattern="[a-zA-Z0-9+/-^*()]">
+                <input type="text" id="expn" value="A+B/C*(D-A)^F^H" pattern="[a-zA-Z0-9+/-^*()]" required>
                 <button id="convert">Convert</button>
             </div>
-        
+
             <div class="output-sec">
-                <div id="ans">
-        
+                <div class="ans">
+                    <label for="postfix">PostFix: </label>
+                    <div id="postfix" class="sans">
+
+                    </div>
+
                 </div>
-        
+                <div class="ans">
+                    <label for="postfix">PreFix: </label>
+                    <div id="prefix" class="sans"></div>
+
+
+                </div>
+
             </div>
 
         </div>
 
-        
+
 
         <div class="column">
             <ul>
@@ -41,18 +51,29 @@
                 <li>Only <strong>^ * / + - </strong> operators are only allowed </li>
             </ul>
         </div>
-    
+
 
     </div>
 
-  
-    
+
+
+
+
     <footer>
         <div class="content">
-            Made with 💘 by iaavas
+            <p>Made with 💘 by iaavas</p>
+            <div class="social-media">
+
+                <ul class="socials">
+                    <li><a href="https://www.instagram.com/imaavash/" target="_blank"><i
+                                class="fa fa-instagram"></i></a></li>
+                    <li><a href="https://twitter.com/iaavas" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                </ul>
+
+            </div>
         </div>
-        
-        </footer>
+
+    </footer>
     <script src="index.js"></script>
 </body>
 
