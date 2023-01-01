@@ -75,13 +75,21 @@ class Stack {
     isEmpty() {
         return this.top == -1;
     }
+
+    display() {
+        let dis = []
+        for (let i = 0; i <= this.top; i++) {
+            dis.push(this.stck[i]);
+        }
+        return dis;
+    }
 }
 
-const postfix = (arg) => {
+const postfix = (arg, dec) => {
     const s = new Stack();
 
     let pfixarr = '';
-
+    let itr = 1;
     for (let i = 0; i < arg.length; i++) {
         if (isAlphaNumeric(arg[i])) {
             pfixarr += arg[i];
@@ -106,21 +114,61 @@ const postfix = (arg) => {
             }
             s.push(arg[i]);
         }
+        console.log(i, s.display(), pfixarr);
+        renderSteps(itr, arg[i], s.display(), pfixarr, dec);
+        itr += 1;
     }
 
     while (!s.isEmpty()) {
         pfixarr += s.giveTop();
+        renderSteps(itr, '-', s.display(), pfixarr, dec);
         s.pop();
+        itr += 1;
     }
     return pfixarr;
 };
+const row = document.createElement('tr');
+const itr = document.createElement('td')
+const val = document.createElement('td')
+const stck = document.createElement('td')
+const pfix = document.createElement('td')
+
+
+
+
+const renderSteps = (sn, expn, stack, postfix, dec) => {
+    if (dec) {
+        const row = document.createElement('tr');
+        const itr = document.createElement('td')
+        const val = document.createElement('td')
+        const stck = document.createElement('td')
+        const pfix = document.createElement('td')
+
+
+        itr.innerText = sn;
+        val.innerText = expn;
+        stck.innerText = stack;
+        pfix.innerText = postfix;
+
+        row.appendChild(itr);
+        row.appendChild(val);
+        row.appendChild(stck);
+        row.appendChild(pfix);
+
+        document.getElementsByClassName('step-body')[0].appendChild(row);
+    }
+
+
+}
 
 // let arg = document.getElementById('arg').value;
 document.getElementById('convert').addEventListener('click', () => {
+    document.querySelector('.step-body').innerHTML = '';
     const arg = document.getElementById('expn').value;
     if (validate()) {
-        document.getElementById('postfix').innerText =  `${ postfix(arg)}`;
-        document.getElementById('prefix').innerText =  ` ${ prefix(arg)}`;
+        document.querySelector('.footer').style.position = 'relative';
+        document.getElementById('postfix').innerText = `${postfix(arg, true)}`;
+        document.getElementById('prefix').innerText = ` ${prefix(arg, false)}`;
     } else {
         document.getElementById('ans').innerText = 'Invalid Expression!!!';
     }
@@ -133,20 +181,20 @@ const revStr = (str) => {
         newString += str[i];
     }
     return newString;
-    
+
 }
 
 const prefix = (str) => {
-    str = str.replace(/\(|\)/g, function(match) {
+    str = str.replace(/\(|\)/g, function (match) {
         if (match === "(") {
-          return ")";
+            return ")";
         } else {
-          return "(";
+            return "(";
         }
-      });
+    });
     str = revStr(str);
     str = postfix(str);
     let preFixArr = revStr(str);
     return preFixArr;
-      
+
 }
