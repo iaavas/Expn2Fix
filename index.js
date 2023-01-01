@@ -114,7 +114,6 @@ const postfix = (arg, dec) => {
             }
             s.push(arg[i]);
         }
-        console.log(i, s.display(), pfixarr);
         renderSteps(itr, arg[i], s.display(), pfixarr, dec);
         itr += 1;
     }
