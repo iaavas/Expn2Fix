@@ -121,7 +121,7 @@ const postfix = (arg, dec) => {
 
     while (!s.isEmpty()) {
         pfixarr += s.giveTop();
-        renderSteps(itr, '-', s.display(), pfixarr, dec);
+        renderSteps(itr, '#', s.display(), pfixarr, dec);
         s.pop();
         itr += 1;
     }
