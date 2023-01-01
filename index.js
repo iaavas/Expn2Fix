@@ -96,7 +96,7 @@ const postfix = (arg, dec) => {
         } else if (arg[i] == '(') {
             s.push(arg[i]);
         } else if (arg[i] == ')') {
-            while (s.giveTop() != '(') {
+            while (s.giveTop() != '(' && s.isEmpty() == false) {
                 pfixarr += s.giveTop();
                 s.pop();
             }
