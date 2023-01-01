@@ -171,9 +171,15 @@ table {
 
 }
 
+
+
 td {
   display: table-cell;
+  /* border: 1px solid rgb(61, 9, 109); */
+
 }
+
+tr {}
 
 .steps th {
   vertical-align: bottom;

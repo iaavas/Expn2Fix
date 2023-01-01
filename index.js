@@ -146,7 +146,8 @@ const renderSteps = (sn, expn, stack, postfix, dec) => {
 
         itr.innerText = sn;
         val.innerText = expn;
-        stck.innerText = stack;
+        stck.innerText = (stack.toString()).replace(/,/g, ' ')
+
         pfix.innerText = postfix;
 
         row.appendChild(itr);
