@@ -135,6 +135,8 @@ button:hover {
 }
 
 
+
+
 .steps {
   width: 100%;
   max-width: 100%;
@@ -151,7 +153,10 @@ tbody {
 
 }
 
-
+.subcontent {
+  display: flex;
+  flex-direction: row;
+}
 
 .steps td {
   padding: 0.75rem;
@@ -173,6 +178,20 @@ td {
 .steps th {
   vertical-align: bottom;
 }
+
+.heart {
+  color: #e00;
+  animation: beat .75s infinite alternate;
+  transform-origin: center;
+}
+
+/* Heart beat animation */
+@keyframes beat {
+  to {
+    transform: scale(1.4);
+  }
+}
+
 
 @media (max-width:622px) {
   .main {
