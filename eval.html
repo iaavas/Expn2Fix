@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Convert to PostFix & PreFix</title>
+    <title>Eval PostFix</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <link rel="shortcut icon" href="https://img.icons8.com/fluency/48/null/stackexchange.png" type="image/x-icon">
 
 
@@ -15,35 +15,18 @@
 
 <body>
 
-
     <div class="title">
-        <h1><strong>Convert Expression to PostFix & PreFix</strong></h1>
+        <h1><strong>Evaluate PostFix</strong></h1>
     </div>
     <div class="main">
 
         <div class="column">
             <div class="input-sec">
-                <input type="text" id="expn" value="A+B/C*(D-A)^F^H" pattern="[a-zA-Z0-9+/-^*()]" required>
-                <button id="convert">Convert</button>
-                <button id="change" onclick="location.href ='./eval.html' ">Evaluate ></button>
+                <input type="text" id="expn" value="1 2 +" pattern="[a-zA-Z0-9+/-^*()]" required>
+                <button id="evaluate">Evaluate</button>
+                <button id="change" onclick="location.href ='./index.html' ">Convert ></button>
             </div>
 
-            <div class=" output-sec">
-                <div class="ans">
-                    <label for="postfix">PostFix: </label>
-                    <div id="postfix" class="sans">
-
-                    </div>
-
-                </div>
-                <div class="ans">
-                    <label for="postfix">PreFix: </label>
-                    <div id="prefix" class="sans"></div>
-
-
-                </div>
-
-            </div>
 
         </div>
 
@@ -51,9 +34,9 @@
 
         <div class="column">
             <ul>
-                <li>Only Characters from <strong>A-Z or a-z </strong> are allowed</li>
-                <li>Only paranthesis <strong>' ( ' </strong> is allowed </li>
-                <li>Only <strong>^ * / + - </strong> operators are only allowed </li>
+                <li>Use only PostFix value</li>
+                <li>Seperate the digits with a single space only</li>
+                <li style="opacity: 80%;">Eg. 4 55 + 22 23 - *</li>
             </ul>
         </div>
 
@@ -66,17 +49,16 @@
             <th>S.N.</th>
             <th>Expression</th>
             <th>Stack</th>
-            <th>PostFix</th>
         </tr>
 
-
-
-        <tbody class="step-body">
-
+        <tbody class="step-body" id="evalTable">
+            <tr></tr>
+            <tr></tr>
+            <tr>
+            </tr>
 
         </tbody>
     </table>
-
 
 
 
@@ -98,11 +80,10 @@
 
     </footer>
 
+    <script src="eval.js" type="module"></script>
+    <script src="popup.js" type="module"></script>
 
 
-
-
-    <script src="convert.js"></script>
 </body>
 
 </html>

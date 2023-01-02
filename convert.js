@@ -161,7 +161,6 @@ const renderSteps = (sn, expn, stack, postfix, dec) => {
 
 }
 
-// let arg = document.getElementById('arg').value;
 document.getElementById('convert').addEventListener('click', () => {
     document.querySelector('.step-body').innerHTML = '';
     const arg = document.getElementById('expn').value;
@@ -170,7 +169,7 @@ document.getElementById('convert').addEventListener('click', () => {
         document.getElementById('postfix').innerText = `${postfix(arg, true)}`;
         document.getElementById('prefix').innerText = ` ${prefix(arg, false)}`;
     } else {
-        document.getElementById('ans').innerText = 'Invalid Expression!!!';
+        alert('Invalid Expression!!!');
     }
 });
 
@@ -198,3 +197,4 @@ const prefix = (str) => {
     return preFixArr;
 
 }
+
