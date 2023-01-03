@@ -17,9 +17,9 @@ body {
 }
 
 #change {
-  background-color: rgb(255, 193, 7);
+  background-color: rgb(255, 200, 34);
   padding: 0.4rem;
-  color: black;
+  color: rgba(0, 0, 0, 0.774);
 }
 
 
@@ -27,7 +27,7 @@ button {
   border: none;
   border-radius: 0.4rem;
   padding: 0.6rem;
-  background-color: rgb(61, 9, 109);
+  background-color: rgb(42, 101, 165);
   color: white;
 }
 
@@ -68,7 +68,7 @@ label {
 
 footer {
   position: absolute;
-  background-color: rgb(61, 9, 109);
+  background-color: rgb(42, 101, 165);
   color: white;
   bottom: -10rem;
   left: -1.5rem;
@@ -196,6 +196,7 @@ td {
 }
 
 .heart {
+  padding: 0 0.6rem;
   color: #e00;
   animation: beat .75s infinite alternate;
   transform-origin: center;
